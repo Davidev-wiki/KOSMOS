@@ -3,88 +3,178 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kosmos.subject.dao.KosmosSubjectDAO">
+	<resultMap type="com.kosmos.subject.vo.KosmosSubjectVO" id="svo">
+		<result property="sb_year" column="SB_YEAR" />
+		<result property="sb_semester" column="SB_SEMESTER" />
+		<result property="sb_name" column="SB_NAME" />
+		<result property="sb_teacher" column="SB_TEACHER" />
+		<result property="sb_grade" column="SB_GRADE" />
+		<result property="sb_day" column="SB_DAY" />
+		<result property="sb_time" column="SB_TIME" />
+	</resultMap>
 	
-	<select id="subjectSelectAll" parameterType="subjectVO" resultType="subjectVO">
-		SELECT		 A.SB_NUM						SB_NUM
-					,A.SB_GROUP						SB_GROUP
-					,A.SB_CODE						SB_CODE
-					,A.SB_TYPE						SB_TYPE
-					,A.SB_NAME						SB_NAME
-					,A.SB_CREDITUNIT				SB_CREDITUNIT
-					,A.SB_GRADE						SB_GRADE
-					,TO_CHAR(TO_DATE(A.SB_YEAR), 'YYYY')		SB_YEAR
-					,A.SB_SEMESTER					SB_SEMESTER
-					,A.SB_TEACHER					SB_TEACHER
-					,A.SB_MAXSTU					SB_MAXSTU
-					,A.SB_DAY						SB_DAY
-					,A.SB_TIME						SB_TIME
-					,A.SB_BEFOREYN					SB_BEFOREYN
-					,A.SB_BEFORENAME				SB_BEFORENAME
-					,TO_CHAR(TO_DATE(A.SB_INSDATE), 'YYYY-MM-DD')		SB_INSDATE
-					,TO_CHAR(TO_DATE(A.SB_UPDDATE), 'YYYY-MM-DD')		SB_UPDDATE
-					,A.SB_DELYN			SB_DELYN
-		FROM		KOSMOS_SUBJECT	A
-		WHERE		A.SB_DELYN		= 'Y'
-		ORDER BY	1 DESC
+	<!-- 
+	<select id="" parameterType="subjectVO" resultMap="svo">
+		SELECT  LPAD((NVL(MAX(SUBSTR(A.SB_CODE, -2)), 0) + 1), 3, 0) SB_NEWCODE 
+		FROM 	KOSMOS_SUBJECT A
+		WHERE 	A.SB_GROUP = #{sb_group, jdbcType=VARCHAR}
 	</select>
-	
-	
-	<select id="subjectSelect" parameterType="SubjectVO" resultType="SubjectVO">
-		SELECT		 A.SB_NUM						SB_NUM
-					,A.SB_GROUP						SB_GROUP
-					,A.SB_CODE						SB_CODE
-					,A.SB_TYPE						SB_TYPE
-					,A.SB_NAME						SB_NAME
-					,A.SB_CREDITUNIT				SB_CREDITUNIT
-					,A.SB_GRADE						SB_GRADE
-					,TO_CHAR(TO_DATE(A.SB_YEAR), 'YYYY')		SB_YEAR
-					,A.SB_SEMESTER					SB_SEMESTER
-					,A.SB_TEACHER					SB_TEACHER
-					,A.SB_MAXSTU					SB_MAXSTU
-					,A.SB_DAY						SB_DAY
-					,A.SB_TIME						SB_TIME
-					,A.SB_BEFOREYN					SB_BEFOREYN
-					,A.SB_BEFORENAME				SB_BEFORENAME
-					,TO_CHAR(TO_DATE(A.SB_INSDATE), 'YYYY-MM-DD')		SB_INSDATE
-					,TO_CHAR(TO_DATE(A.SB_UPDDATE), 'YYYY-MM-DD')		SB_UPDDATE
-					,A.SB_DELYN			SB_DELYN
+	 -->
+	 
+	<select id="subjectSelectAll" parameterType="subjectVO" resultMap="svo">
+		SELECT		A.*
 		FROM		KOSMOS_SUBJECT	A
 		<where>
 			<!-- 개설년도로 검색 (드롭박스) -->
-			<if test="SB_YEAR != null">
+	      	<if test="sb_year != null">
 				AND A.SB_YEAR = #{sb_year, jdbcType=VARCHAR}
+				<!-- <![CDATA[AND A.SB_YEAR LIKE '%' || #{sb_year, jdbcType=VARCHAR} || '%']]> --> 
 			</if>
 			
 			<!-- 개설학기로 조회 (드롭박스) -->
-			<if test="SB_SEMESTER != null">
+			<if test="sb_semester != null">
 				AND A.SB_SEMESTER = #{sb_semester, jdbcType=VARCHAR}
 			</if>
 			
 			<!-- 과목명으로 조회 (텍스트) -->
-			<if test="SB_NAME != null">
-				AND A.SB_NAME = #{sb_name, jdbcType=VARCHAR}
+			<if test="sb_name != null">
+				<![CDATA[AND A.SB_NAME LIKE '%' || #{sb_name, jdbcType=VARCHAR} || '%']]>
+				<!-- AND A.SB_NAME = #{sb_name, jdbcType=VARCHAR} -->
 			</if>
 			
 			<!-- 교사명으로 조회 (텍스트) -->
-			<if test="SB_TEACHER != null">
-				AND A.SB_TEACHER = #{sb_teacher, jdbcType=VARCHAR}
+			<if test="sb_teacher != null">
+				<!-- AND A.SB_TEACHER LIKE '유재석'-->
+				<![CDATA[AND A.SB_TEACHER LIKE '%' || #{sb_teacher, jdbcType=VARCHAR} || '%']]> 
 			</if>
 			
 			<!-- 대상학년으로 조회 (드롭박스) -->
-			<if test="SB_GRADE != null">
+			<if test="sb_grade != null">
 				AND A.SB_GRADE = #{sb_grade, jdbcType=VARCHAR}
 			</if>
 			
 			<!-- 수업요일으로 조회 (드롭박스) -->
-			<if test="SB_DAY != null"> 
+			<if test="sb_day != null"> 
 				AND A.SB_DAY = #{sb_day, jdbcType=VARCHAR}
 			</if>
 			
 			<!-- 수업시간으로 조회 (드롭박스) -->
-			<if test="SB_TIME != null">
+			<if test="sb_time != null">
 				AND A.SB_TIME = #{sb_time, jdbcType=VARCHAR}
 			</if>
-		</where>
+		</where>	
 		ORDER BY 	A.SB_GROUP, A.SB_CODE ASC
 	</select>
+	
+	<select id="subjectAdminCheck" parameterType="memberVO" resultType="memberVO">
+		SELECT		 A.ME_NUM		ME_NUM					
+		FROM		KOSMOS_MEMBER	A
+		WHERE		A.ME_DELYN = 'Y'
+		AND			A.ME_ID = #{me_id, jdbcType=VARCHAR}
+		AND			A.ME_PW = #{me_pw, jdbcType=VARCHAR}			
+	</select>
+	
+	<select id="subjectSelect" parameterType="subjectVO" resultType="subjectVO">
+		SELECT		 A.SB_NUM						SB_NUM
+					,A.SB_GROUP						SB_GROUP
+					,A.SB_CODE						SB_CODE
+					,A.SB_TYPE						SB_TYPE
+					,A.SB_NAME						SB_NAME
+					,A.SB_CREDITUNIT				SB_CREDITUNIT
+					,A.SB_GRADE						SB_GRADE
+					,A.SB_YEAR						SB_YEAR
+					,A.SB_SEMESTER					SB_SEMESTER
+					,A.SB_TEACHER					SB_TEACHER
+					,A.SB_MAXSTU					SB_MAXSTU
+					,A.SB_DAY						SB_DAY
+					,A.SB_TIME						SB_TIME
+					,A.SB_BEFOREYN					SB_BEFOREYN
+					,A.SB_BEFORENAME				SB_BEFORENAME
+					,TO_CHAR(TO_DATE(A.SB_INSDATE), 'YYYY-MM-DD')		SB_INSDATE
+					,TO_CHAR(TO_DATE(A.SB_UPDDATE), 'YYYY-MM-DD')		SB_UPDDATE
+					,A.SB_DELYN			SB_DELYN
+		FROM		KOSMOS_SUBJECT	A
+		
+	</select>
+	
+	<insert id="subjectInsert" parameterType="subjectVO">
+		INSERT INTO		KOSMOS_SUBJECT
+							(
+							SB_NUM
+							,SB_GROUP
+							,SB_CODE
+							,SB_TYPE
+							,SB_NAME
+							
+							,SB_CREDITUNIT
+							,SB_GRADE
+							,SB_YEAR
+							,SB_SEMESTER
+							,SB_TEACHER
+							
+							,SB_MAXSTU
+							,SB_DAY
+							,SB_TIME
+							,SB_BEFOREYN
+							,SB_BEFORENAME
+							
+							,SB_INSDATE
+							,SB_UPDDATE
+							,SB_DELYN
+							)
+		
+		VALUES			 (
+							#{sb_num, jdbcType=VARCHAR}			<!-- 과목 번호 --> 
+							,#{sb_group, jdbcType=VARCHAR}  	<!-- 교과군번호 -->
+							,#{sb_code, jdbcType=VARCHAR}   	<!-- 과목코드 -->
+							,#{sb_type, jdbcType=VARCHAR}  		<!-- 과목유형 -->
+							,#{sb_name, jdbcType=VARCHAR}  		<!-- 과목명 -->
+							
+							,#{sb_creditunit, jdbcType=VARCHAR} <!-- 이수단위 -->
+							,#{sb_grade, jdbcType=VARCHAR}  	<!-- 대상학년 -->
+							,#{sb_year, jdbcType=VARCHAR}  		<!-- 개설년도 -->
+							,#{sb_semester, jdbcType=VARCHAR}  	<!-- 개설학기 -->
+							,#{sb_teacher, jdbcType=VARCHAR} 	<!-- 담당교사 -->
+							
+							,#{sb_maxstu, jdbcType=VARCHAR}  	<!-- 정원 -->
+							,#{sb_day, jdbcType=VARCHAR}  		<!-- 수업요일 -->
+							,#{sb_time, jdbcType=VARCHAR}  		<!-- 수업교시 -->
+							,#{sb_beforeyn, jdbcType=VARCHAR}  	<!-- 선수과목유무 -->
+							,#{sb_beforename, jdbcType=VARCHAR} <!-- 선수과목명 -->
+							
+							,SYSDATE 						 	<!-- 등록일 -->
+							,SYSDATE  							<!-- 수정일 -->
+							,'Y'      							<!-- 삭제여부 -->
+							)
+	</insert>
+	
+	<update id="subjectUpdate" parameterType="subjectVO">
+		UPDATE		KOSMOS_SUBJECT
+		SET			SB_GROUP = #{sb_group, jdbcType=VARCHAR}
+					,SB_CODE = #{sb_code, jdbcType=VARCHAR}
+					,SB_TYPE = #{sb_type, jdbcType=VARCHAR}
+					,SB_NAME = #{sb_name, jdbcType=VARCHAR}
+					,SB_CREDITUNIT = #{sb_creditunit, jdbcType=VARCHAR}
+					,SB_GRADE = #{sb_grade, jdbcType=VARCHAR}
+					,SB_SEMESTER = #{sb_semester, jdbcType=VARCHAR}
+					,SB_TEACHER = #{sb_teacher, jdbcType=VARCHAR}
+					,SB_MAXSTU = #{sb_maxstu, jdbcType=VARCHAR}
+					,SB_DAY = #{sb_day, jdbcType=VARCHAR}
+					,SB_TIME = #{sb_time, jdbcType=VARCHAR}
+					,SB_BEFOREYN = #{sb_beforeyn, jdbcType=VARCHAR}
+					,SB_BEFORENAME = #{sb_beforename, jdbcType=VARCHAR}
+					,SB_UPDDATE = SYSDATE
+		WHERE		SB_DELYN = 'Y'			
+		AND			SB_NUM = #{sb_num, jdbcType=VARCHAR}
+	</update>
+	
+	<update id="subjectDelete" parameterType="subjectVO">
+		UPDATE		KOSMOS_SUBJECT
+		SET			(
+						 SB_DELYN = 'N'
+						,SB_UPDDATE = SYSDATE
+					)
+		WHERE		SB_DELYN = 'Y'
+		AND			SB_NUM = #{sb_num, jdbcType=VARCHAR}
+	</update>
 </mapper>

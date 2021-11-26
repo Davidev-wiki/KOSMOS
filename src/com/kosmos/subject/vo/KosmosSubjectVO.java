@@ -1,22 +1,28 @@
 package com.kosmos.subject.vo;
 
-public class KosmosSubjectVO {
+import org.apache.log4j.Logger;
 
+public class KosmosSubjectVO {
+	private static Logger logger = Logger.getLogger(KosmosSubjectVO.class);
+	
 	private String sb_num;
 	private String sb_group;
 	private String sb_code;
 	private String sb_type;
 	private String sb_name;
+	
 	private String sb_creditunit;
 	private String sb_grade;
 	private String sb_year;
 	private String sb_semester;
 	private String sb_teacher;
+	
 	private String sb_maxstu;
 	private String sb_day;
 	private String sb_time;
 	private String sb_beforeyn;
 	private String sb_beforename;
+	
 	private String sb_insdate;
 	private String sb_upddate;
 	private String sb_delyn;
@@ -192,6 +198,28 @@ public class KosmosSubjectVO {
 
 	public void setSb_delyn(String sb_delyn) {
 		this.sb_delyn = sb_delyn;
+	}
+	
+	public static void subjectPrintVO(KosmosSubjectVO svo) {
+		logger.info("KosmosSubjectVO 데이터 체크 시작 >>> : ");
+		logger.info("svo.getSb_num() >>> : " + svo.getSb_num());;
+		logger.info("svo.getSb_group() >>> : " + svo.getSb_group());
+		logger.info("svo.getSb_code() >>> : " + svo.getSb_code());
+		logger.info("svo.getSb_type() >>> : " + svo.getSb_type());
+		logger.info("svo.getSb_name() >>> : " + svo.getSb_name());
+		
+		logger.info("getSb_creditunit() >>> : " + svo.getSb_creditunit());
+		logger.info("svo.getSb_grade() >>> : " + svo.getSb_grade());
+		logger.info("svo.getSb_year() >>> : " + svo.getSb_year());
+		logger.info("svo.getSb_semester() >>> : " + svo.getSb_semester());
+		logger.info("svo.getSb_teacher() >>> : " + svo.getSb_teacher());
+		
+		logger.info("svo.getSb_maxstu() >>> : " + svo.getSb_maxstu());
+		logger.info("svo.getSb_day() >>> : " + svo.getSb_day());
+		logger.info("svo.getSb_time() >>> : " + svo.getSb_time());
+		logger.info("svo.getSb_beforename() >>> : " + svo.getSb_beforename());
+		
+		logger.info("KosmosSubjectVO 데이터 체크 끝 >>> : ");
 	}
 	
 }
