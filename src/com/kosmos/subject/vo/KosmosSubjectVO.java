@@ -27,6 +27,15 @@ public class KosmosSubjectVO {
 	private String sb_upddate;
 	private String sb_delyn;
 	
+	// 검색용
+	private String key_sbname;
+	private String key_sbteacher;
+	private String key_sbgrade;
+	private String key_selectgrade;
+	private String key_sbday;
+	private String key_sbtime;
+	
+	
 	public KosmosSubjectVO() {
 		
 	}
@@ -200,6 +209,55 @@ public class KosmosSubjectVO {
 		this.sb_delyn = sb_delyn;
 	}
 	
+	// 검색용
+	public String getKey_sbname() {
+		return key_sbname;
+	}
+
+	public void setKey_sbname(String key_sbname) {
+		this.key_sbname = key_sbname;
+	}
+	
+	public String getKey_sbteacher() {
+		return key_sbteacher;
+	}
+
+	public void setKey_sbteacher(String key_sbteacher) {
+		this.key_sbteacher = key_sbteacher;
+	}
+
+	public String getKey_sbgrade() {
+		return key_sbgrade;
+	}
+
+	public void setKey_sbgrade(String key_sbgrade) {
+		this.key_sbgrade = key_sbgrade;
+	}
+
+	public String getKey_sbday() {
+		return key_sbday;
+	}
+
+	public void setKey_sbday(String key_sbday) {
+		this.key_sbday = key_sbday;
+	}
+
+	public String getKey_sbtime() {
+		return key_sbtime;
+	}
+
+	public void setKey_sbtime(String key_sbtime) {
+		this.key_sbtime = key_sbtime;
+	}
+
+	public String getKey_selectgrade() {
+		return key_selectgrade;
+	}
+
+	public void setKey_selectgrade(String key_selectgrade) {
+		this.key_selectgrade = key_selectgrade;
+	}
+
 	public static void subjectPrintVO(KosmosSubjectVO svo) {
 		logger.info("KosmosSubjectVO 데이터 체크 시작 >>> : ");
 		logger.info("svo.getSb_num() >>> : " + svo.getSb_num());;
@@ -219,7 +277,15 @@ public class KosmosSubjectVO {
 		logger.info("svo.getSb_time() >>> : " + svo.getSb_time());
 		logger.info("svo.getSb_beforename() >>> : " + svo.getSb_beforename());
 		
+		logger.info("svo.getKey_sbname() >>> : " + svo.getKey_sbname());
+		logger.info("svo.getKey_sbteacher() >>> : " + svo.getKey_sbteacher());
+		logger.info("svo.getKey_sbgrade() >>> : " + svo.getKey_sbgrade());
+		logger.info("svo.getKey_selectgrade() >>> : " + svo.getKey_selectgrade());
+		logger.info("svo.getKey_sbday() >>> : " + svo.getKey_sbday());
+		logger.info("svo.getKey_sbtime() >>> : " + svo.getKey_sbtime());
+		
 		logger.info("KosmosSubjectVO 데이터 체크 끝 >>> : ");
 	}
+
 	
 }

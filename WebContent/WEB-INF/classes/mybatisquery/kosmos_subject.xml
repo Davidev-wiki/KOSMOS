@@ -3,16 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.kosmos.subject.dao.KosmosSubjectDAO">
-	<resultMap type="com.kosmos.subject.vo.KosmosSubjectVO" id="svo">
-		<result property="sb_year" column="SB_YEAR" />
-		<result property="sb_semester" column="SB_SEMESTER" />
-		<result property="sb_name" column="SB_NAME" />
-		<result property="sb_teacher" column="SB_TEACHER" />
-		<result property="sb_grade" column="SB_GRADE" />
-		<result property="sb_day" column="SB_DAY" />
-		<result property="sb_time" column="SB_TIME" />
-	</resultMap>
-	
+		
 	<!-- 
 	<select id="" parameterType="subjectVO" resultMap="svo">
 		SELECT  LPAD((NVL(MAX(SUBSTR(A.SB_CODE, -2)), 0) + 1), 3, 0) SB_NEWCODE 
@@ -21,49 +12,58 @@
 	</select>
 	 -->
 	 
-	<select id="subjectSelectAll" parameterType="subjectVO" resultMap="svo">
-		SELECT		A.*
+	<select id="subjectSelectAll" parameterType="subjectVO" resultType="subjectVO">
+		SELECT		 A.SB_NUM						SB_NUM
+					,A.SB_GROUP						SB_GROUP
+					,A.SB_CODE						SB_CODE
+					,A.SB_TYPE						SB_TYPE
+					,A.SB_NAME						SB_NAME
+
+					,A.SB_CREDITUNIT				SB_CREDITUNIT
+					,A.SB_GRADE						SB_GRADE
+					,A.SB_YEAR						SB_YEAR
+					,A.SB_SEMESTER					SB_SEMESTER
+					,A.SB_TEACHER					SB_TEACHER
+
+					,A.SB_MAXSTU					SB_MAXSTU
+					,A.SB_DAY						SB_DAY
+					,A.SB_TIME						SB_TIME
+					,A.SB_BEFOREYN					SB_BEFOREYN
+					,A.SB_BEFORENAME				SB_BEFORENAME
+
+					,TO_CHAR(TO_DATE(A.SB_INSDATE), 'YYYY-MM-DD')		SB_INSDATE
+					,TO_CHAR(TO_DATE(A.SB_UPDDATE), 'YYYY-MM-DD')		SB_UPDDATE
+					,A.SB_DELYN			SB_DELYN
 		FROM		KOSMOS_SUBJECT	A
 		<where>
-			<!-- 개설년도로 검색 (드롭박스) -->
-	      	<if test="sb_year != null">
-				AND A.SB_YEAR = #{sb_year, jdbcType=VARCHAR}
-				<!-- <![CDATA[AND A.SB_YEAR LIKE '%' || #{sb_year, jdbcType=VARCHAR} || '%']]> --> 
-			</if>
-			
-			<!-- 개설학기로 조회 (드롭박스) -->
-			<if test="sb_semester != null">
-				AND A.SB_SEMESTER = #{sb_semester, jdbcType=VARCHAR}
-			</if>
-			
 			<!-- 과목명으로 조회 (텍스트) -->
-			<if test="sb_name != null">
-				<![CDATA[AND A.SB_NAME LIKE '%' || #{sb_name, jdbcType=VARCHAR} || '%']]>
+			<if test="key_sbname != null and key_sbname !='' ">
+				<![CDATA[AND A.SB_NAME LIKE '%' || #{key_sbname, jdbcType=VARCHAR} || '%']]>
 				<!-- AND A.SB_NAME = #{sb_name, jdbcType=VARCHAR} -->
 			</if>
 			
 			<!-- 교사명으로 조회 (텍스트) -->
-			<if test="sb_teacher != null">
-				<!-- AND A.SB_TEACHER LIKE '유재석'-->
-				<![CDATA[AND A.SB_TEACHER LIKE '%' || #{sb_teacher, jdbcType=VARCHAR} || '%']]> 
+			<if test="key_sbteacher != null and key_sbteacher !='' ">
+				<![CDATA[AND A.SB_TEACHER LIKE '%' || #{key_sbteacher, jdbcType=VARCHAR} || '%']]>
 			</if>
 			
 			<!-- 대상학년으로 조회 (드롭박스) -->
-			<if test="sb_grade != null">
-				AND A.SB_GRADE = #{sb_grade, jdbcType=VARCHAR}
+			<if test="key_sbgrade != null and key_sbgrade !=''">
+				<![CDATA[AND A.SB_GRADE LIKE '%' ||  #{key_sbgrade, jdbcType=VARCHAR} || '%' ]]>
+			</if>
+			<!-- 
+			 수업요일으로 조회 (드롭박스) 
+			<if test="key_sbday != null and key_sbday !=''">
+				<![CDATA[AND A.SB_DAY LIKE '%' ||  #{key_sbday, jdbcType=VARCHAR} || '%' ]]>
 			</if>
 			
-			<!-- 수업요일으로 조회 (드롭박스) -->
-			<if test="sb_day != null"> 
-				AND A.SB_DAY = #{sb_day, jdbcType=VARCHAR}
+			 수업교시로 조회 (드롭박스) 
+			<if test="key_sbtime != null and key_sbtime !=''">
+				<![CDATA[AND A.SB_TIME LIKE '%' ||  #{key_sbtime, jdbcType=VARCHAR} || '%' ]]>
 			</if>
+			 -->
 			
-			<!-- 수업시간으로 조회 (드롭박스) -->
-			<if test="sb_time != null">
-				AND A.SB_TIME = #{sb_time, jdbcType=VARCHAR}
-			</if>
-		</where>	
-		ORDER BY 	A.SB_GROUP, A.SB_CODE ASC
+		</where>
 	</select>
 	
 	<select id="subjectAdminCheck" parameterType="memberVO" resultType="memberVO">

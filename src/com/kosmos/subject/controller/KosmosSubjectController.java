@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kosmos.common.CommonUtils;
 import com.kosmos.member.vo.KosmosMemberVO;
 import com.kosmos.subject.service.KosmosSubjectService;
 import com.kosmos.subject.vo.KosmosSubjectVO;
@@ -41,26 +42,27 @@ public class KosmosSubjectController {
 	public String subjectSelectAll(HttpServletRequest req, KosmosSubjectVO svo, Model model){
 		logger.info("SubjectController : subjectSelectAll() >>> : ");
 		
-		String sb_year = req.getParameter("sb_year");
-		String sb_semester = req.getParameter("sb_semester");
-		String sb_name = req.getParameter("sb_name");
-		String sb_teacher = req.getParameter("sb_teacher");
-		String sb_grade = req.getParameter("sb_grade");
-		String sb_day = req.getParameter("sb_day");
-		String sb_time = req.getParameter("sb_time");
+		String key_sbname = req.getParameter("key_sbname");
+		String key_sbteacher = req.getParameter("key_sbteacher");
+		String key_sbgrade = req.getParameter("key_sbgrade");
+		String key_sbday = req.getParameter("key_sbday");
+		String key_sbtime = req.getParameter("key_sbtime");
+		String key_selectgrade = req.getParameter("key_selectgrade");
 		
-		svo.setSb_year(sb_year);
-		svo.setSb_semester(sb_semester);
-		svo.setSb_name(sb_name);
-		svo.setSb_teacher(sb_teacher);
-		svo.setSb_grade(sb_grade);
-		svo.setSb_day(sb_day);
-		svo.setSb_time(sb_time);
+		svo.setKey_sbname(key_sbname);
+		svo.setKey_sbteacher(key_sbteacher);
+		svo.setKey_sbgrade(key_sbgrade);
+		svo.setKey_sbday(key_sbday);
+		svo.setKey_sbtime(key_sbtime);
+		svo.setKey_selectgrade(key_selectgrade);
+		
+		logger.info("subjectSelectAll() 다녀오기 전 >>> : ");
 		KosmosSubjectVO.subjectPrintVO(svo);
 		
 		List<KosmosSubjectVO> listSA = kosmosSubjectService.subjectSelectAll(svo);
+		logger.info("subjectSelectAll() 다녀온 후 >>> : ");
+		KosmosSubjectVO.subjectPrintVO(svo);
 		logger.info("SubjectController : subjectSelectAll() listSA.size() >>> : " + listSA.size());
-		logger.info("SubjectController : subjectSelectAll() svo >>> : " + svo);
 		if (listSA != null && listSA.size() > 0) {
 			model.addAttribute("listSA", listSA);
 			return "subject/subjectSelectAll";
@@ -83,38 +85,9 @@ public class KosmosSubjectController {
 			model.addAttribute("listS", listS);
 			return "subject/subjectSelect";
 		}
-		return "";
+		return "subject/subjectSelectAll";
 	}
-	
-	@GetMapping("selectSB")
-	public String selectSB(HttpServletRequest req, KosmosSubjectVO svo, Model model) {
 		
-		String sb_year = req.getParameter("sb_year");
-		String sb_semester = req.getParameter("sb_semester");
-		String sb_name = req.getParameter("sb_name");
-		String sb_teacher = req.getParameter("sb_teacher");
-		String sb_grade = req.getParameter("sb_grade");
-		String sb_day = req.getParameter("sb_day");
-		String sb_time = req.getParameter("sb_time");
-		
-		svo.setSb_year(sb_year);
-		svo.setSb_semester(sb_semester);
-		svo.setSb_name(sb_name);
-		svo.setSb_teacher(sb_teacher);
-		svo.setSb_grade(sb_grade);
-		svo.setSb_day(sb_day);
-		svo.setSb_time(sb_time);
-		
-		KosmosSubjectVO.subjectPrintVO(svo);
-		List<KosmosSubjectVO> listSB = kosmosSubjectService.subjectSelectAll(svo);
-		
-		if(listSB != null && listSB.size() > 0) {
-			model.addAttribute("listSB", listSB);
-			return "subject/subjectSelectAll";
-		}
-		return "subject/subjectAdminCheckFail";
-	}
-	
 	@GetMapping("tempCheck")
 	public String tempCheck(HttpServletRequest req, KosmosMemberVO mvo) {
 		logger.info("kosmosSubjectController : tempCheck() 과목 정보 입력 후 임시로 거치는 컨트롤러 작업 >>> : ");
@@ -192,10 +165,7 @@ public class KosmosSubjectController {
 		}else {
 			
 		}
-		model.addAttribute("svoAC", svo);
-//		KosmosSubjectController ksc = new KosmosSubjectController();
-//		ksc.subjectSelectAll(req, svo, model);
-//		return "subject/subjectAdminCheckFail";
+//		model.addAttribute("svoAC", svo);
 		return "subject/subjectInsertForm";
 	}
 	

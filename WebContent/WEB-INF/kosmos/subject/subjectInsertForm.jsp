@@ -112,7 +112,8 @@
 				</tr>
 				<tr>
 					<td>과목코드</td>
-					<!-- 넣을지 말지 수정 요함 -->
+					<!-- 각 과목마다 순번이 있고, 저장된 값이 있으면, 저장되지 않은 값이 있음. DB와 연결하여 찾아야 함. 
+						 ID 찾기 코드 사용하기 -->
 					<td><input type="text" id="sb_code" name="sb_code" readonly></td>
 				</tr>
 				<tr>
@@ -222,7 +223,7 @@
 			</tbody>
 			<tr>
 				<td colspan="5">
-					과목 수정을 위한 관리자님의 비밀번호를 입력해주세요.<br>
+					과목 등록을 위한 관리자님의 비밀번호를 입력해주세요.<br>
 					<input type="password" id="teacher_key" name="teacher_key">
 					<button type="button" id="keyCheck" name="keyCheck">확인</button>
 					<input type="hidden" id="auth_teacher_key" name="auth_teacher_key" value=<%= AuthenticationKey.TEACHER_KEY %>>
