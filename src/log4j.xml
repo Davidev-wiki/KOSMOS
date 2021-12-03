@@ -11,7 +11,7 @@
     </appender>
     
     <!-- Application Loggers -->
-    <logger name="a.b.c.com">
+    <logger name="com">
         <level value="trace" />
     </logger>
      

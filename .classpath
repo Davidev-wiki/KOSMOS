@@ -6,7 +6,30 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/commons-logging-1.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/cos.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/jai_codec.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/jai_core.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/javax.mail-1.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/json-simple-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/mail-1.4.7.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/mybatis-3.2.4.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/mybatis-spring-1.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-aop-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-beans-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-context-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-context-support-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-core-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-expression-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-jdbc-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-tx-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-web-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-webmvc-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/spring-websocket-4.3.16.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/00.KOSMO93/30.Web/el_kosmos_work/kosmos/WebContent/WEB-INF/lib/standard.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

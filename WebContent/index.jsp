@@ -25,12 +25,15 @@ div {text-align: center;}
 <img src="img/img2.jpg" alt="Girl in a jacket" width="1500" height="500">
 <p class="search-school-title"> 
 <h1>연구*선도학교</h1>
-<a href="subject.k">과목테스트</a>
 <h2>
 	2025년 고교학점제의 안정적인 도입을 위하여 2018년부터 연구·선도학교를 지정, 고교학점제를 시범 운영하고 있습니다.<br>
 	또한 연구·선도 학교가 아닌 일반 학교에서도 고교학점제를 미리 준비할 수 있도록 다양한 일반고 지원 사업이 추진되고 있습니다.</h2></p>
 	<h3>연구학교(10)</h3>
 	<h3>
+	<a href="boardForm.k">스프링 게시판 : 글쓰기</a><br>
+	<a href="boardSelectAll.k">스프링 게시판 : 글목록 조회</a><br>
+	<a href="rboardForm.k">스프링 게시판 : 댓글 테스트</a><br>
+	<a href="boardSelectPaging.k">스프링 게시판 : 글 목록 페이징 테스트</a><br>
 	<input type="checkbox" name="high school1"  onclick="calc(this)">코스모스고등학교<br><hr>
 	<input type="checkbox" name="high school2"  onclick="calc(this)">당곡등학교<br><hr>
 	<input type="checkbox" name="high school3"  onclick="calc(this)">동북고등학교<br><hr>

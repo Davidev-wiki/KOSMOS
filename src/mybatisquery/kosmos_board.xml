@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kosmos.board.dao.KosmosBoardDAO">
+
+<resultMap type="com.kosmos.board.vo.KosmosBoardVO" id="bvo">
+	<result property="bo_num" 		column="BO_NUM"/>
+	<result property="ms_num"		column="MS_NUM"/>
+	<result property="bo_header" 	column="BO_HEADER"/>
+	<result property="bo_subject" 	column="BO_SUBJECT"/>
+	<result property="bo_contents" 	column="BO_CONTENTS"/>
+	<result property="bo_pw" 		column="BO_PW"/>
+	<result property="bo_file" 		column="BO_FILE"/>
+</resultMap>
+
+<insert id="boardInsert" parameterType="boardVO">
+
+	INSERT INTO KOSMOS_BOARD( 	BO_NUM, 
+								MS_NUM, 
+								BO_HEADER,
+	                          	BO_SUBJECT, 
+	                          	BO_CONTENTS, 
+	                          	BO_PW,
+	                          	BO_FILE,
+	                          	BO_DELYN, 
+	                          	BO_INSDATE, 
+	                          	BO_UPDDATE) 
+	                  VALUES( 	#{bo_num, jdbcType=VARCHAR}, 
+	                  			#{ms_num, jdbcType=VARCHAR}, 
+	                  			#{bo_header, jdbcType=VARCHAR},
+	                          	#{bo_subject, jdbcType=VARCHAR}, 
+	                          	#{bo_contents, jdbcType=VARCHAR},
+	                          	#{bo_pw, jdbcType=VARCHAR}, 
+	                          	#{bo_file, jdbcType=VARCHAR}, 
+	                          	'Y', 
+	                          	SYSDATE, 
+	                          	SYSDATE)
+</insert>
+
+<select id="boardSelectPaging" parameterType="boardVO" resultType="boardVO">	
+	SELECT * FROM (
+		SELECT 	BO_NUM		BO_NUM
+			   ,MS_NUM		MS_NUM
+			   ,BO_HEADER	BO_HEADER
+	           ,BO_SUBJECT	BO_SUBJECT
+	           ,BO_CONTENTS	BO_CONTENTS
+		       ,BO_FILE		BO_FILE
+	           ,BO_DELYN	BO_DELYN
+		       ,TO_CHAR(BO_INSDATE, 'YYYY-MM-DD') BO_INSDATE
+		       ,TO_CHAR(BO_UPDDATE, 'YYYY-MM-DD') BO_UPDDATE	  
+		       <!--  ? : 페이지 사이즈 : pageSize  -->
+			   ,CEIL(ROW_NUMBER() OVER(ORDER BY BO_NUM)/ #{pageSize, jdbcType=VARCHAR} ) pageSize		
+			   ,COUNT(BO_NUM) OVER() AS totalCount       
+		FROM 	KOSMOS_BOARD 
+		WHERE 	BO_DELYN = 'Y' 	
+		ORDER BY 1 DESC  
+		<!--  ? : 현재 페이지 : curPage  -->
+	) WHERE pageSize = #{curPage, jdbcType=VARCHAR}	
+</select>
+ 
+<select id="boardSelectAll" parameterType="boardVO" resultType="boardVO">	
+	SELECT 	BO_NUM	 		BO_NUM	
+	       ,MS_NUM			MS_NUM	
+	       ,BO_HEADER		BO_HEADER	
+	       ,BO_SUBJECT 		BO_SUBJECT
+	       ,BO_CONTENTS 	BO_CONTENTS
+	       ,BO_PW 			BO_PW
+	       ,BO_FILE 		BO_FILE
+	       ,BO_DELYN 		BO_DELYN
+	       ,TO_CHAR(BO_INSDATE, 'YYYY-MM-DD') BO_INSDATE
+	       ,TO_CHAR(BO_UPDDATE, 'YYYY-MM-DD') BO_UPDDATE	     
+	FROM 	KOSMOS_BOARD 
+	WHERE 	BO_DELYN = 'Y' 
+	<if test="startdate!=null and startdate!='' and enddate!=null and enddate!=''">
+		<![CDATA[AND TO_CHAR(BO_INSDATE, 'YYYY-MM-DD') >= TO_CHAR(TO_DATE(#{startdate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+		<![CDATA[AND TO_CHAR(BO_UPDDATE, 'YYYY-MM-DD') <= TO_CHAR(TO_DATE(#{enddate, jdbcType=VARCHAR}), 'YYYY-MM-DD')]]>
+	</if>
+	<if test="keyfilter=='key1'">
+		<![CDATA[AND BO_SUBJECT LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+	</if>
+	<if test="keyfilter=='key2'">
+		<![CDATA[AND BO_CONTENTS LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+	</if>
+	<if test="keyfilter=='key3'">
+		<![CDATA[AND BO_SUBJECT LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>
+		<![CDATA[OR BO_CONTENTS LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>			
+	</if>
+	<if test="keyfilter=='key4'">
+		<![CDATA[AND MS_NUM LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>			
+	</if>
+	<if test="keyfilter=='key5'">
+		<![CDATA[AND BO_NUM LIKE '%' || #{keyword, jdbcType=VARCHAR} || '%']]>			
+	</if>
+	ORDER BY 1 DESC  
+</select>
+
+<select id="boardSelect" parameterType="boardVO" resultType="boardVO">
+	SELECT 	BO_NUM	 	BO_NUM	
+	       ,MS_NUM		MS_NUM	
+	       ,BO_HEADER	BO_HEADER	
+	       ,BO_SUBJECT 	BO_SUBJECT
+	       ,BO_CONTENTS BO_CONTENTS
+	       ,BO_PW 		BO_PW
+	       ,BO_FILE 	BO_FILE
+	       ,BO_DELYN 	BO_DELYN
+	       ,TO_CHAR(BO_INSDATE, 'YYYY-MM-DD') BO_INSDATE
+	       ,TO_CHAR(BO_UPDDATE, 'YYYY-MM-DD') BO_UPDDATE	
+	FROM KOSMOS_BOARD WHERE BO_DELYN='Y' AND BO_NUM = #{bo_num, jdbcType=VARCHAR}
+</select>
+
+<update id="boardUpdate" parameterType="boardVO">
+	UPDATE KOSMOS_BOARD SET BO_CONTENTS=#{bo_contents, jdbcType=VARCHAR}, BO_UPDDATE = SYSDATE
+	WHERE BO_DELYN = 'Y' AND BO_NUM = #{bo_num, jdbcType=VARCHAR}
+</update>
+
+<update id="boardDelete" parameterType="boardVO">
+	UPDATE KOSMOS_BOARD SET BO_DELYN = 'N', BO_UPDDATE = SYSDATE
+	WHERE BO_DELYN = 'Y' AND bo_num = #{bo_num, jdbcType=VARCHAR}
+</update>
+
+
+<select id="boardPwCheck" parameterType="boardVO" resultType="boardVO">
+	SELECT BO_PW BO_PW
+	FROM KOSMOS_BOARD 
+	WHERE BO_DELYN = 'Y' 
+	AND BO_NUM = #{bo_num, jdbcType=VARCHAR}
+	AND BO_PW = #{bo_pw, jdbcType=VARCHAR}
+</select>
+</mapper>

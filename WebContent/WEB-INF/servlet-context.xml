@@ -31,6 +31,6 @@
 	
 	<!-- mapper 찾아보기 (sql xml 과 dao 연결을 위해서 다오 위치 매핑하기) -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage"><value>com.**.**.dao</value></property>
+		<property name="basePackage"><value>com.**.dao</value></property>
 	</bean>
 </beans>

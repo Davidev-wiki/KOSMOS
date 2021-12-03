@@ -1,0 +1,38 @@
+﻿/*나눔바른 고딕*/
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+/*로보토*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+@charset "utf-8";
+
+
+body,h1,h2,h3,h4,h5,h6,p,ul,li,ol,dd,dt,dl,button,hr,dr,form,input,select,iframe,figure,figcaption{margin:0px;padding:0px;list-style:none;font-family:Roboto;font-family: Nanum Barun Gothic;}
+
+img{border:0;}
+a{text-decoration:none;}
+
+/*공통 부분*/
+.wrap{}
+.container{width:1200px; margin:0 auto;}
+
+/*비디오 부분*/
+.row{margin-top:50px;}
+.sub_name{margin-bottom:30px;font-size:30px;}
+.topimg{width:1447px;height:243px;background:url(img/img5.png)no-repeat center; margin:0 auto;}
+.box_video{margin:0 auto;background:url(img/img6.png)no-repeat center;width:1189px;height:683px;}
+.video_inner{margin-left:60px;margin-top:60px;}
+
+/*밑에 곤텐츠 부분*/
+.row2{margin-top:50px;}
+.col-md-7{float:left;margin-left:80px;margin-right:100px;}
+.col-md-7>img{margin:0 auto;display:block;margin-top:60px;}
+.select_wrap{float:left;}
+.col-md-2{float:left;margin-top:20px;}
+.col-md-2>select{width:314px;height:500px;}
+.col-md-3{float:left;margin-top:20px;}
+.col-md-3>select{width:314px;height:500px;}
+
+/*푸터 부분*/
+.footer{width:1200px; height:1000px;}

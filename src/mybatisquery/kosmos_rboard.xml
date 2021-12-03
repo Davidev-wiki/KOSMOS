@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kosmos.rboard.dao.KosmosRboardDAO">
+
+<insert id="rboardInsert" parameterType="rboardVO">
+
+	INSERT INTO KOSMOS_RBOARD( 	CO_NUM, 
+								BO_NUM, 
+								MS_NUM,
+	                           	CO_CONTENTS, 
+	                           	CO_PW,	                          
+	                           	CO_INSDATE,
+	                           	CO_DELYN) 
+	                  VALUES( 	#{co_num, jdbcType=VARCHAR}, 
+	                  			#{bo_num, jdbcType=VARCHAR}, 
+	                  			#{ms_num, jdbcType=VARCHAR},
+	                          	#{co_contents, jdbcType=VARCHAR}, 
+	                          	#{co_pw, jdbcType=VARCHAR}, 
+	                          	SYSDATE,
+	                          	'Y'
+	                          	)
+</insert>
+
+<select id="rboardSelect" parameterType="rboardVO" resultType="rboardVO">
+	SELECT * FROM KOSMOS_RBOARD WHERE CO_DELYN = 'Y' AND CO_NUM = #{co_num, jdbcType=VARCHAR}
+</select>
+
+<select id="rboardSelectAll" parameterType="rboardVO" resultType="rboardVO">
+	SELECT * FROM KOSMOS_RBOARD WHERE CO_DELYN = 'Y' AND BO_NUM = #{bo_num, jdbcType=VARCHAR}
+</select>
+
+<update id="rboardDelete" parameterType="rboardVO">
+	UPDATE KOSMOS_RBOARD SET CO_DELYN = 'N', CO_INSDATE = SYSDATE
+	WHERE CO_DELYN = 'Y' AND CO_NUM = #{co_num, jdbcType=VARCHAR}
+</update>
+</mapper>
+
