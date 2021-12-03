@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+					
+<mapper namespace="com.kosmos.school.dao.KosmosSchoolDAO">
+	
+	<!-- 1교시 -->
+	<!-- 빠진 부분 NULL값을 ' '로 바꿔주기 -->
+	<select id="timetable1" parameterType="SchoolVO" resultType="SchoolVO">
+		
+		SELECT      MS_NUM, 
+			NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,1,1) LIKE '1' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,2,1) LIKE '1' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME1 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,3,1) LIKE '1' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME2
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,4,1) LIKE '1' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME3
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,5,1) LIKE '1' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME4
+		FROM        KOSMOS_SUGANGLIST
+		WHERE       ROWNUM=1
+	</select>
+	
+	<!-- 2교시 -->
+	<!-- 빠진 부분 NULL값을 ' '로 바꿔주기 -->
+	<select id="timetable2" parameterType="SchoolVO" resultType="SchoolVO">
+		
+		SELECT      
+			NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,1,1) LIKE '2' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME5 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,2,1) LIKE '2' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME6 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,3,1) LIKE '2' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME7
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,4,1) LIKE '2' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME8
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,5,1) LIKE '2' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME9
+		FROM        KOSMOS_SUGANGLIST
+		WHERE       ROWNUM=1 
+	</select>
+	
+	<!-- 3교시 -->
+	<!-- 빠진 부분 NULL값을 ' '로 바꿔주기 -->
+	<select id="timetable3" parameterType="SchoolVO" resultType="SchoolVO">
+		
+		SELECT      
+			NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,1,1) LIKE '3' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME10 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,2,1) LIKE '3' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME11
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,3,1) LIKE '3' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME12
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,4,1) LIKE '3' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME13
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,5,1) LIKE '3' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME14
+		FROM        KOSMOS_SUGANGLIST
+		WHERE       ROWNUM=1 
+	</select>
+	
+	<!-- 4교시 -->
+	<!-- 빠진 부분 NULL값을 ' '로 바꿔주기 -->
+	<select id="timetable4" parameterType="SchoolVO" resultType="SchoolVO">
+		
+		SELECT      
+			NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,1,1) LIKE '4' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME15 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,2,1) LIKE '4' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME16 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,3,1) LIKE '4' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME17
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,4,1) LIKE '4' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME18
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,5,1) LIKE '4' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME19
+		FROM        KOSMOS_SUGANGLIST
+		WHERE       ROWNUM=1 
+	</select>
+	
+	<!-- 5교시 -->
+	<!-- 빠진 부분 NULL값을 ' '로 바꿔주기 -->
+	<select id="timetable5" parameterType="SchoolVO" resultType="SchoolVO">
+		
+		SELECT      
+			NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,1,1) LIKE '5' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME20 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,2,1) LIKE '5' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME21
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,3,1) LIKE '5' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME22
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,4,1) LIKE '5' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME23
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,5,1) LIKE '5' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME24
+		FROM        KOSMOS_SUGANGLIST
+		WHERE       ROWNUM=1 
+	</select>
+	
+	<!-- 6교시 -->
+	<!-- 빠진 부분 NULL값을 ' '로 바꿔주기 -->
+	<select id="timetable6" parameterType="SchoolVO" resultType="SchoolVO">
+		
+		SELECT      
+			NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,1,1) LIKE '6' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME25 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,2,1) LIKE '6' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME26 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,3,1) LIKE '6' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME27
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,4,1) LIKE '6' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME28
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,5,1) LIKE '6' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME29
+		FROM        KOSMOS_SUGANGLIST
+		WHERE       ROWNUM=1 
+	</select>
+	
+	<!-- 7교시 -->
+	<!-- 빠진 부분 NULL값을 ' '로 바꿔주기 -->
+	<select id="timetable7" parameterType="SchoolVO" resultType="SchoolVO">
+		
+		SELECT      
+			NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,1,1) LIKE '7' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME30 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,2,1) LIKE '7' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME31 
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,3,1) LIKE '7' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME32
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,4,1) LIKE '7' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME33
+           ,NVL((SELECT SB_NAME FROM KOSMOS_SUGANGLIST
+             WHERE SUBSTR(SB_TIME,5,1) LIKE '7' 
+             AND MS_NUM = #{ms_num, jdbcType=VARCHAR}), ' ') AS SB_NAME34
+		FROM        KOSMOS_SUGANGLIST
+		WHERE       ROWNUM=1 
+	</select>
+</mapper>
