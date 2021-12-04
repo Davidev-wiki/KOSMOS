@@ -1,0 +1,19 @@
+header {position: relative; width: 1760px; margin: 0 auto;}
+header h1 {position: absolute; left: 0; top: 26px;}
+header h1 a {display: block; width: 120x; height: 79px; background: url(img/KakaoTalk_20211128_143447619.jpg) no-repeat;}
+header .member {position: absolute; right: 0; top: 50%; width: 29px; height: 32px; background: url(img/ico_member.png) no-repeat; transform: translateY(-50%);}
+header .gnb {text-align: center; font-size: 0;}
+header .gnb > li {display: inline-block; padding: 0 18px;}
+header .gnb > li > a {display: block; position: relative; padding: 0 16px; line-height: 107px; font-size: 18px; color: #043874;}
+header .gnb > li:hover > a:before,
+header .gnb > li > a:focus:before {content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: #3ac1d3;}
+header .gnb > li:hover > a:after,
+header .gnb > li > a:focus:after {content: ""; position: absolute; right: 0; top: 40px; width: 7px; height: 10px; background: url(img/ico_rain.png) no-repeat;}
+header .gnb > li ul {display: none; position: absolute; z-index: 10;}
+header .gnb > li ul li {float: left;}
+header .gnb > li ul li a {display: block; padding: 0 16px; line-height: 62px; font-size: 16px; color: #fff;}
+header .gnb > li ul li a:hover,
+header .gnb > li ul li a:focus {color: #e4f893;}
+header .gnb > li:last-child ul {margin-left: -280px;}
+.bg_gnb {display: none; position: absolute; left: 0; right: 0; top: 107px; height: 62px; background: linear-gradient(to right, #38cebb, #3db1ed);}
+.ie9 .bg_gnb {background: #38cebb;}

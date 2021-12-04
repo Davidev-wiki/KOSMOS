@@ -23,6 +23,7 @@ div {text-align: center;}
 	</div>
 </header>
 <img src="img/img2.jpg" alt="Girl in a jacket" width="1500" height="500">
+<a href="/kosmos/board/board_main_page.k">코스모스숲 메인 페이지</a><br> 
 <p class="search-school-title"> 
 <h1>연구*선도학교</h1>
 <a href="subject.k">과목테스트</a>

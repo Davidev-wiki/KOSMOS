@@ -50,37 +50,37 @@
 					,A.SB_DELYN			SB_DELYN
 		FROM		KOSMOS_SUBJECT	A
 		<where>
-			<!-- 개설년도로 검색 (드롭박스) -->
+			개설년도로 검색 (드롭박스)
 			<if test="SB_YEAR != null">
 				AND A.SB_YEAR = #{sb_year, jdbcType=VARCHAR}
 			</if>
 			
-			<!-- 개설학기로 조회 (드롭박스) -->
+			개설학기로 조회 (드롭박스)
 			<if test="SB_SEMESTER != null">
 				AND A.SB_SEMESTER = #{sb_semester, jdbcType=VARCHAR}
 			</if>
 			
-			<!-- 과목명으로 조회 (텍스트) -->
+			과목명으로 조회 (텍스트)
 			<if test="SB_NAME != null">
 				AND A.SB_NAME = #{sb_name, jdbcType=VARCHAR}
 			</if>
 			
-			<!-- 교사명으로 조회 (텍스트) -->
+			교사명으로 조회 (텍스트)
 			<if test="SB_TEACHER != null">
 				AND A.SB_TEACHER = #{sb_teacher, jdbcType=VARCHAR}
 			</if>
 			
-			<!-- 대상학년으로 조회 (드롭박스) -->
+			대상학년으로 조회 (드롭박스)
 			<if test="SB_GRADE != null">
 				AND A.SB_GRADE = #{sb_grade, jdbcType=VARCHAR}
 			</if>
 			
-			<!-- 수업요일으로 조회 (드롭박스) -->
+			수업요일으로 조회 (드롭박스)
 			<if test="SB_DAY != null"> 
 				AND A.SB_DAY = #{sb_day, jdbcType=VARCHAR}
 			</if>
 			
-			<!-- 수업시간으로 조회 (드롭박스) -->
+			수업시간으로 조회 (드롭박스)
 			<if test="SB_TIME != null">
 				AND A.SB_TIME = #{sb_time, jdbcType=VARCHAR}
 			</if>
