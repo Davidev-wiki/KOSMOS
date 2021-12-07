@@ -161,11 +161,12 @@ public class KosmosSchoolController {
 	
 	// 시간표
 	@GetMapping("mainTimeTable")
-	public String timetable(KosmosSchoolVO svo, Model model, HttpSession hs, KosmosLoginVO lvo) {
+	public String timetable(KosmosSchoolVO svo, Model model, HttpSession hs) {
 		logger.info("KosmosSchoolController timetable() 함수 진입 >>> : ");
+
+		KosmosLoginVO lvo_data = (KosmosLoginVO) hs.getAttribute("result"); String
+		ms_num = lvo_data.getMs_num();
 		
-		KosmosLoginVO lvo_data = (KosmosLoginVO) hs.getAttribute("result");
-		String ms_num = lvo_data.getMs_num();
 		System.out.println("ms_num >>> : " + ms_num);
 		svo.setMs_num(ms_num);
 		
@@ -196,7 +197,7 @@ public class KosmosSchoolController {
 		if(aList1.size() > 0 && aList2.size() > 0 && aList3.size() > 0 && 
 				aList4.size() > 0 && aList5.size() > 0 && aList6.size() > 0
 				&& aList7.size() > 0) {
-			return "school/school_timetable";
+			return "../../kosmos_timetable";
 		}
 		return "school/checkfail";
 	}
